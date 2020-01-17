@@ -22,7 +22,7 @@ print(len(pairs))
 # print(sys.getsizeof(pairs) / 1000 / 1000)
 
 # Print missing
-print(nums)
+# print(nums)
 for num1 in nums:
     for num2 in nums:
         # Skip identity
@@ -35,15 +35,39 @@ for num1 in nums:
         if not p1 in pairs:
             try:
                 pairs.remove(p2)
-                print(p2)
+                # print(p2)
             except:
                 pass
         elif not p2 in pairs:
             try:
                 pairs.remove(p1)
-                print(p1)
+                # print(p1)
             except:
                 pass
 
-print(len(pairs))
+# print(len(pairs))
 # Good rows must have n-1 columns?
+
+pdict = {}
+# print(pairs)
+# print(sorted(pairs, key=lambda x: x[0]))
+for row in sorted(pairs, key=lambda x: x[0]):
+
+    print(row)
+    # srow = sorted(row, key=lambda x: x[0])
+    srow = list(sorted(row))
+    k = srow[0]
+    v = srow[1]
+    if not k in pdict:
+        pdict[k] = []
+    pdict[k].append(v)
+
+for row in pdict.values():
+    print(row)
+
+# vals = sorted(pdict.values(), key=lambda x: x[0])
+# for row in pdict.values():
+#     print(row)
+
+# print('\n'.join([''.join(['{:4}'.format(item) for item in row]) 
+#       for row in pairs]))

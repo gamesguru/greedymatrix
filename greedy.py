@@ -7,15 +7,17 @@ import csv
 nums = set()
 pairs = set()
 
-input_file = 'large.csv'
+input_file = '3000,3000.csv'
+o_index = 0
+d_index = 1
 
 print("Read in CSV")
 # Read in
 with open(input_file) as f:
     reader = csv.reader(f)
     for row in reader:
-        i = int(row[2])
-        j = int(row[3])
+        i = int(row[o_index])
+        j = int(row[d_index])
         pairs.add((i, j))
         nums.add(i)
         nums.add(j)
@@ -27,6 +29,7 @@ m = max(nums)
 print(f'''Pre-pruning
 Span:  {n}
 Max:   {m}
+Miss:  {[x for x in range(1, m + 1) if not x in nums]}
 Pairs: {len(pairs)}
 ''')
 print(f"Num stops: {n}\n")
@@ -112,8 +115,8 @@ with open('filtered.csv', 'w+') as csv_out:
         reader = csv.reader(csv_in)
 
         for row in reader:
-            i = int(row[2])
-            j = int(row[3])
+            i = int(row[o_index])
+            j = int(row[d_index])
             # Add only members of the square solution
             if i in solution and j in solution and i != j:
                 writer.writerow(row)

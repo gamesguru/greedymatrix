@@ -7,10 +7,11 @@ import csv
 nums = set()
 pairs = set()
 
+input_file = 'large.csv'
 
 print("Read in CSV")
 # Read in
-with open("large.csv") as f:
+with open(input_file) as f:
     reader = csv.reader(f)
     for row in reader:
         i = int(row[2])
@@ -87,4 +88,26 @@ DONE: all have {floor} matches!
     loops += 1
 
 
-print(list(matches.keys()))
+solution = set(matches.keys())
+print(solution)
+
+
+print('''
+----------------------------------
+Streaming new filtered CSV
+----------------------------------
+''')
+# Stream output
+with open('filtered.csv', 'w+') as csv_out:
+    writer = csv.writer(csv_out)
+
+    # Read in
+    with open(input_file) as csv_in:
+        reader = csv.reader(csv_in)
+
+        for row in reader:
+            i = int(row[2])
+            j = int(row[3])
+            # Add only members of the square solution
+            if i in solution and j in solution and i != j:
+                writer.writerow(row)

@@ -14,8 +14,8 @@ def main(args):
         n = int(args[0])
         missing_perc = float(args[1])
     else:
-        n = 300
-        missing_perc = 0.04
+        n = 5
+        missing_perc = 0.1
 
     # Create the matrix
     matrix = np.ones((n, n), dtype=np.byte,)
@@ -25,10 +25,13 @@ def main(args):
         for j in range(0, n):
             if random() < missing_perc:
                 matrix[i][j] = 0
-                # matrix[j][i] = 0
+                # TODO - comment out for real tests
+                matrix[j][i] = 0
 
     # Write to CSV file
-    np.savetxt(f'resources/_{n}x{n}-{missing_perc}.csv', matrix, fmt='%i', delimiter=',')
+    np.savetxt(
+        f"resources/_{n}x{n}-{missing_perc}.csv", matrix, fmt="%i", delimiter=","
+    )
 
     # Auxilary format
     rows = []
@@ -36,14 +39,14 @@ def main(args):
         for j in range(0, n):
             # Don't add missing ones
             if matrix[i][j]:
-                rows.append(f'{i},{j}')
+                rows.append(f"{i},{j}")
 
     # Write to CSV file
-    with open(f'resources/{n}-{missing_perc}.csv', 'w+') as f:
+    with open(f"resources/{n}-{missing_perc}.csv", "w+") as f:
         for row in rows:
-            f.writelines(row + '\n')
+            f.writelines(row + "\n")
 
 
 # Main script executable
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(sys.argv[1:])

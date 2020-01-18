@@ -6,7 +6,7 @@ import csv
 nums = set()
 pairs = set()
 
-with open('small.csv') as f:
+with open("small.csv") as f:
     reader = csv.reader(f)
     for row in reader:
         i = int(row[2])
@@ -27,20 +27,23 @@ for i in range(0, n):
             print(anti_pair)
             pairs.remove(anti_pair)
 
+matches = {0: 0}
 # Apply Greedy
-matches = {}
-for pair in pairs:
-    k = pair[0]
-    v = pair[1]
-    if not k in matches:
-        matches[k] = 0
-    matches[k] += 1
+while len(matches) > max(matches.values()):
+    matches = {}
+    for pair in pairs:
+        k = pair[0]
+        v = pair[1]
+        if not k in matches:
+            matches[k] = 0
+        matches[k] += 1
 
-print(matches)
-k = min(matches, key=matches.get)
-v = matches[k]
-while (
-    matches[min(matches, key=matches.get)] == matches[k]):
-    del matches[k]
+    print(matches)
     k = min(matches, key=matches.get)
     v = matches[k]
+    floor = v
+    while matches[k] == floor:
+        del matches[k]
+        k = min(matches, key=matches.get)
+        v = matches[k]
+print(matches)

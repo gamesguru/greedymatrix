@@ -15,8 +15,12 @@ def main(args):
 
     if len(args) > 0:
         input_file = args[0]
-        o_index = int(args[1])
-        d_index = int(args[2])
+        if len(args) > 1:
+            o_index = int(args[1])
+            d_index = int(args[2])
+        else:
+            o_index = 0
+            d_index = 1
     else:
         input_file = "resources/5-0.1.csv"
         o_index = 0
@@ -63,7 +67,6 @@ def main(args):
         j = p[1]
         # Set cell True
         matrix[i][j] = 1
-
 
     print(
         """

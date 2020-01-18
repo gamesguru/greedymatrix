@@ -2,14 +2,17 @@
 
 import csv
 
+o_index = 0
+d_index = 1
+
 nums = {}
 
 print("Read in CSV")
 with open("large.csv") as in_f:
     reader = csv.reader(in_f)
     for row in reader:
-        i = int(row[2])
-        j = int(row[3])
+        i = int(row[o_index])
+        j = int(row[d_index])
         # Add e.g. 100 --> 97, map original index to reduced
         if not i in nums:
             nums[i] = len(nums)
@@ -25,10 +28,10 @@ with open("large.mapped.csv", "w+") as out_f:
 
         reader = csv.reader(in_f)
         for row in reader:
-            i = int(row[2])
-            j = int(row[3])
+            i = int(row[o_index])
+            j = int(row[d_index])
             # Set to reduce-mapped value
-            row[2] = nums[i]
-            row[3] = nums[j]
+            row[o_index] = nums[i]
+            row[d_index] = nums[j]
             # Write out
             writer.writerow(row)

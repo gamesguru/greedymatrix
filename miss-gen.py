@@ -9,6 +9,7 @@ import numpy as np
 def main(args):
     """ Generates relative i,j CSV format with missing entirs, like ESRI/Arc """
 
+    # Get input args
     if len(args) > 0:
         n = int(args[0])
         missing_perc = float(args[1])
@@ -33,10 +34,11 @@ def main(args):
     rows = []
     for i in range(0, n):
         for j in range(0, n):
-            if random() > missing_perc:
+            # Don't add missing ones
+            if matrix[i][j]:
                 rows.append(f'{i},{j}')
 
-    # with open(f'resources/{n},{n}.csv', 'w+') as f:
+    # Write to CSV file
     with open(f'resources/{n}-{missing_perc}.csv', 'w+') as f:
         for row in rows:
             f.writelines(row + '\n')

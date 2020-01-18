@@ -15,7 +15,7 @@ def main(args):
         o_index = int(args[1])
         d_index = int(args[2])
     else:
-        input_file = 'resources/300,300.csv'
+        input_file = "resources/5-0.1.csv"
         o_index = 0
         d_index = 1
 
@@ -33,12 +33,14 @@ def main(args):
     # Find max
     n = len(nums)
     m = max(nums)
-    print(f'''Pre-pruning
+    print(
+        f"""Pre-pruning
     Span:  {n}
     Max:   {m}
     Miss:  {[x for x in range(0, m) if not x in nums]}
     Pairs: {len(pairs)}
-    ''')
+    """
+    )
     print(f"Num stops: {n}\n")
 
     # Remove compliments
@@ -51,6 +53,7 @@ def main(args):
                 pairs.remove(anti_pair)
 
     print(f"Post pruning: {len(pairs)} entries")
+
     print(
         """
 --------------------
@@ -76,16 +79,12 @@ Begin GREEDY algo
                 matches[i] += 1
         print(f"{len(matches)} stops remaining")
 
-        k = min(matches, key=matches.get)
-        v = matches[k]
-        floor = v
-
         # Break if square
-        if all(x == floor for x in matches.values()):
+        if all(x == len(matches) for x in matches.values()):
             print(
                 f"""
 ----------------------------------
-DONE: all have {floor} matches!
+DONE: all have {len(matches)} matches!
 ----------------------------------
     """
             )
@@ -93,21 +92,20 @@ DONE: all have {floor} matches!
 
         # Greedy selection
         print("Prune weakest links")
-        while matches[k] == floor:
-            print(f"  del {k}  ({matches[k]} occurances)")
-            del matches[k]
-            k = min(matches, key=matches.get)
-            v = matches[k]
+        k = min(matches, key=matches.get)
+        print(f"  del {k}  ({matches[k]} occurances)")
+        del matches[k]
 
         # Continue
         loops += 1
 
+    # Print solution
     solution = set(matches.keys())
     print(solution)
 
-    # Stream output
-    print('\n==> Streaming new filtered CSV')
-    with open(args[0].replace('.csv', '.filtered.csv'), 'w+') as csv_out:
+    # Stream output to new CSV
+    print("\n==> Streaming new filtered CSV")
+    with open(args[0].replace(".csv", ".filtered.csv"), "w+") as csv_out:
         writer = csv.writer(csv_out)
 
         # Read in
@@ -123,5 +121,5 @@ DONE: all have {floor} matches!
 
 
 # Main script executable
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(sys.argv[1:])

@@ -10,7 +10,7 @@ pairs = set()
 
 print("Read in CSV")
 # Read in
-with open("small.csv") as f:
+with open("large.csv") as f:
     reader = csv.reader(f)
     for row in reader:
         i = int(row[2])

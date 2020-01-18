@@ -34,7 +34,8 @@ print(len(pairs))
 
 matches = {0: 0}
 # Apply Greedy
-while len(matches) > max(matches.values()):
+while len(matches) > min(matches.values()):
+    print(f'[CONTINUE] {len(matches)} > {min(matches.values())}')
     matches = {}
 
     print(f"\nIterate..")
@@ -44,17 +45,19 @@ while len(matches) > max(matches.values()):
         if not k in matches:
             matches[k] = 0
         matches[k] += 1
-    print(f'{len(matches)} stop remaining')
-    # print("Find least paired")
+    print(f"{len(matches)} stops remaining")
+
     k = min(matches, key=matches.get)
     v = matches[k]
     floor = v
-    # print(f"Floor: {floor}")
+
+    print('Prune weakest links')
     while matches[k] == floor:
-        print(f"  del {k}->{matches[k]}")
+        print(f"  del {k}  ({matches[k]} occurances)")
         del matches[k]
         k = min(matches, key=matches.get)
         v = matches[k]
-    print(f'..done!  {len(matches)} remaining')
+
+    print(f"..done!  {len(matches)} remaining")
 
 print(list(matches.keys()))

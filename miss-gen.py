@@ -20,3 +20,15 @@ for i in range(0, n):
 
 # Write to CSV file
 np.savetxt(f'{n}x{n}.csv', matrix, fmt='%i', delimiter=',')
+
+
+# Auxilary format
+rows = []
+for i in range(0, n):
+    for j in range(0, n):
+        if random() > missing_perc:
+            rows.append(f'{i},{j}')
+
+with open(f'{n},{n}.csv', 'w+') as f:
+    for row in rows:
+        f.writelines(row + '\n')

@@ -26,3 +26,21 @@ for i in range(0, n):
         if not pair in pairs and anti_pair in pairs:
             print(anti_pair)
             pairs.remove(anti_pair)
+
+# Apply Greedy
+matches = {}
+for pair in pairs:
+    k = pair[0]
+    v = pair[1]
+    if not k in matches:
+        matches[k] = 0
+    matches[k] += 1
+
+print(matches)
+k = min(matches, key=matches.get)
+v = matches[k]
+while (
+    matches[min(matches, key=matches.get)] == matches[k]):
+    del matches[k]
+    k = min(matches, key=matches.get)
+    v = matches[k]

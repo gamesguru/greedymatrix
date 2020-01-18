@@ -6,7 +6,7 @@ from random import random
 import numpy as np
 
 # Create the matrix
-n = 21
+n = 3000
 missing_perc = 0.04
 
 matrix = np.ones((n, n), dtype=np.byte,)

@@ -27,6 +27,7 @@ def main(args):
         d_index = 1
 
     # Read in
+    t0 = time.time()
     print("Read in CSV")
     with open(input_file) as f:
         reader = csv.reader(f)
@@ -36,6 +37,7 @@ def main(args):
             pairs.add((i, j))
             nums.add(i)
             nums.add(j)
+    print(f"{time.time() - t0}s")
 
     # Find max
     n = len(nums)
@@ -51,6 +53,7 @@ def main(args):
     print(f"Num stops: {n}\n")
 
     # Remove compliments
+    t0 = time.time()
     print("Prune compliments")
     for i in nums:
         for j in nums:
@@ -59,8 +62,11 @@ def main(args):
             if not pair in pairs and anti_pair in pairs:
                 pairs.remove(anti_pair)
     print(f"Post pruning: {len(pairs)} entries")
+    print(f"{time.time() - t0}s")
 
     # Create the matrix
+    t0 = time.time()
+    print("Dump into numpy matrix[][]")
     matrix = np.zeros((n, n), dtype=np.byte,)
     for p in pairs:
         i = p[0]
@@ -68,16 +74,12 @@ def main(args):
         # Set cell True
         matrix[i][j] = 1
     del pairs
+    print(f"{time.time() - t0}s")
 
-    print(
-        """
---------------------
-Begin GREEDY algo
---------------------
-    """
-    )
-
+    #
     # Init dict
+    print("Init dict")
+    t0 = time.time()
     matches = {i: 0 for i in nums}
 
     for i in matches.keys():
@@ -87,25 +89,39 @@ Begin GREEDY algo
             if row[j]:
                 # Symmetric, so only sum rows
                 matches[i] += 1
+    print(f"{time.time() - t0}s")
 
-    # Apply Greedy
+    #
+    #
+    # Apply Greedy algorithm
+    print(
+        """
+--------------------
+Begin GREEDY algo
+--------------------
+    """
+    )
+
+    #
+    # Setup algo
     loops = 1
     purged_key = None
+    t0 = time.time()
+
     while True:
 
-        # Restart tallies
         print(f"\n\n==> ITERATION #{loops}")
 
         #
-        # Tallies
+        # Detract purged key from tallies
         if purged_key is not None:
-            t0 = time.time()
+            # Only worry about remaining keys
             for key in matches.keys():
                 row = matrix[key]
+
                 if row[purged_key]:
                     # We lost a 1, so detract from the match
                     matches[key] -= 1
-            print(f"{time.time() - t0} s")
         print(f"{len(matches)} stops remaining")
 
         #
@@ -115,12 +131,14 @@ Begin GREEDY algo
         #
         # Break if square
         if all(x == len(matches) for x in matches.values()):
+            elapsed_micros = round((time.time() - t0) * 1000, 3)
             print(
                 f"""
-----------------------------------
-DONE: all have {len(matches)} matches!
-----------------------------------
-    """
+-------------------------------------------
+DONE:     {len(matches)} x {len(matches)} matches!
+found in: {elapsed_micros:,} ms
+-------------------------------------------
+"""
             )
             break
 
@@ -140,21 +158,21 @@ DONE: all have {len(matches)} matches!
     solution = set(matches.keys())
     print(solution)
 
-    # Stream output to new CSV
-    print("\n==> Streaming new filtered CSV")
-    with open(input_file.replace(".csv", ".filtered.csv"), "w+") as csv_out:
-        writer = csv.writer(csv_out)
+    # # Stream output to new CSV
+    # print("\n==> Streaming new filtered CSV")
+    # with open(input_file.replace(".csv", ".filtered.csv"), "w+") as csv_out:
+    #     writer = csv.writer(csv_out)
 
-        # Read in
-        with open(input_file) as csv_in:
-            reader = csv.reader(csv_in)
+    #     # Read in
+    #     with open(input_file) as csv_in:
+    #         reader = csv.reader(csv_in)
 
-            for row in reader:
-                i = int(row[o_index])
-                j = int(row[d_index])
-                # Add only members of the square solution
-                if i in solution and j in solution and i != j:
-                    writer.writerow(row)
+    #         for row in reader:
+    #             i = int(row[o_index])
+    #             j = int(row[d_index])
+    #             # Add only members of the square solution
+    #             if i in solution and j in solution and i != j:
+    #                 writer.writerow(row)
 
 
 # Main script executable

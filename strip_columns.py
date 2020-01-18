@@ -2,12 +2,13 @@
 import sys
 
 file = sys.argv[1]
-indicies = sys.argv[2].split(',')
+indicies = sys.argv[2].split(",")
 
 import csv
+
 with open(file, "r") as source:
     rdr = csv.reader(source)
-    with open(file + '-processed', "w+") as result:
+    with open(file + "-processed", "w+") as result:
         wtr = csv.writer(result)
         for r in rdr:
             row = []

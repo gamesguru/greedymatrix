@@ -75,11 +75,17 @@ Begin GREEDY algo
 
     # Init dict
     matches = {i: 0 for i in nums}
+    for i in matches.keys():
+        for j in matches.keys():
+            if matrix[i][j]:
+                # Symmetric, so only sum rows
+                matches[i] += 1
 
     # Apply Greedy
     loops = 1
     while True:
 
+        # TODO - just substract removed ones, it is O(2n) instead of n^2
         # Restart tallies
         print(f"\n\n==> ITERATION #{loops}")
         matches = {i: 0 for i in matches.keys()}

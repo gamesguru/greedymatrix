@@ -97,15 +97,15 @@ Begin GREEDY algo
         # Tallies
         keys = matches.keys()
         for i in keys:
+            row = matrix[i]
             for j in keys:
-                if matrix[i][j]:
+                if row[j]:
                     # Symmetric, so only sum rows
                     matches[i] += 1
         print(f"{len(matches)} stops remaining")
         print(f"{time.time() - t0} s")
 
         # Break if square
-        t0 = time.time()
         if all(x == len(matches) for x in matches.values()):
             print(
                 f"""
@@ -115,7 +115,6 @@ DONE: all have {len(matches)} matches!
     """
             )
             break
-        print(f"{time.time() - t0} s")
 
         # Greedy selection
         print("Prune weakest links")

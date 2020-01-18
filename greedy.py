@@ -4,6 +4,8 @@ import sys
 import csv
 import time
 
+import numpy as np
+
 
 def main(args):
 
@@ -52,8 +54,16 @@ def main(args):
             anti_pair = (j, i)
             if not pair in pairs and anti_pair in pairs:
                 pairs.remove(anti_pair)
-
     print(f"Post pruning: {len(pairs)} entries")
+
+    # Create the matrix
+    matrix = np.zeros((n, n), dtype=np.byte,)
+    for p in pairs:
+        i = p[0]
+        j = p[1]
+        # Set cell True
+        matrix[i][j] = 1
+
 
     print(
         """
@@ -76,11 +86,14 @@ Begin GREEDY algo
 
         t0 = time.time()
         # Tallies
-        for i, j in pairs:
-            if i in matches and j in matches:
-                matches[i] += 1
+        keys = matches.keys()
+        for i in keys:
+            for j in keys:
+                if matrix[i][j]:
+                    # Symmetric, so only sum rows
+                    matches[i] += 1
         print(f"{len(matches)} stops remaining")
-        print(f'{time.time() - t0} s')
+        print(f"{time.time() - t0} s")
 
         # Break if square
         t0 = time.time()
@@ -93,7 +106,7 @@ DONE: all have {len(matches)} matches!
     """
             )
             break
-        print(f'{time.time() - t0} s')
+        print(f"{time.time() - t0} s")
 
         # Greedy selection
         print("Prune weakest links")

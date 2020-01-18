@@ -22,14 +22,20 @@ with open(input_file) as f:
 
 
 # Find max
-n = max(nums)
+n = len(nums)
+m = max(nums)
+print(f'''Pre-pruning
+Span:  {n}
+Max:   {m}
+Pairs: {len(pairs)}
+''')
 print(f"Num stops: {n}\n")
 
 
 print("Prune compliments")
 # Remove compliments
-for i in range(0, n):
-    for j in range(0, n):
+for i in nums:
+    for j in nums:
         pair = (i, j)
         anti_pair = (j, i)
         if not pair in pairs and anti_pair in pairs:
@@ -45,7 +51,7 @@ Begin GREEDY algo
 )
 
 # Init dict
-matches = {i: 0 for i in range(min(nums), n)}
+matches = {i: 0 for i in nums}
 
 # Apply Greedy
 loops = 1

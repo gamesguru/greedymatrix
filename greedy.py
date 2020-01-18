@@ -67,6 +67,7 @@ def main(args):
         j = p[1]
         # Set cell True
         matrix[i][j] = 1
+    del pairs
 
     print(
         """
@@ -78,33 +79,39 @@ Begin GREEDY algo
 
     # Init dict
     matches = {i: 0 for i in nums}
+
     for i in matches.keys():
+        row = matrix[i]
+
         for j in matches.keys():
-            if matrix[i][j]:
+            if row[j]:
                 # Symmetric, so only sum rows
                 matches[i] += 1
 
     # Apply Greedy
     loops = 1
+    purged_key = None
     while True:
 
-        # TODO - just substract removed ones, it is O(2n) instead of n^2
         # Restart tallies
         print(f"\n\n==> ITERATION #{loops}")
-        matches = {i: 0 for i in matches.keys()}
 
-        t0 = time.time()
+        #
         # Tallies
-        keys = matches.keys()
-        for i in keys:
-            row = matrix[i]
-            for j in keys:
-                if row[j]:
-                    # Symmetric, so only sum rows
-                    matches[i] += 1
-        print(f"{len(matches)} stops remaining")
-        print(f"{time.time() - t0} s")
+        if purged_key:
+            t0 = time.time()
+            for key in matches.keys():
+                row = matrix[key]
+                if row[purged_key]:
+                    # We lost a 1, so detract from the match
+                    matches[key] -= 1
+            print(f"{time.time() - t0} s")
 
+        #
+        # Purged keys
+        purged_key = None
+
+        #
         # Break if square
         if all(x == len(matches) for x in matches.values()):
             print(
@@ -116,15 +123,18 @@ DONE: all have {len(matches)} matches!
             )
             break
 
+        #
         # Greedy selection
         print("Prune weakest links")
-        k = min(matches, key=matches.get)
-        print(f"  del {k}  ({matches[k]} occurances)")
-        del matches[k]
+        purged_key = min(matches, key=matches.get)
+        print(f"  del {purged_key}  ({matches[purged_key]} occurances)")
+        del matches[purged_key]
 
         # Continue
         loops += 1
 
+    #
+    #
     # Print solution
     solution = set(matches.keys())
     print(solution)

@@ -9,8 +9,9 @@ import numpy as np
 n = 21
 missing_perc = 0.04
 
-matrix = np.zeros((n, n), dtype=np.byte,)
+matrix = np.ones((n, n), dtype=np.byte,)
 
+# Inject missing values
 for i in range(0, n):
     for j in range(0, n):
         if random() > missing_perc:
@@ -18,5 +19,5 @@ for i in range(0, n):
         else:
             matrix[i][j] = 0
 
-# open('matrix.txt', 'w+').write(json.dump(matrix))
-np.savetxt('matrix.txt', matrix, fmt='%i')
+# Write to CSV file
+np.savetxt(f'{n}x{n}.csv', matrix, fmt='%i', delimiter=',')

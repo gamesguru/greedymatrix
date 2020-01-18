@@ -98,7 +98,7 @@ Begin GREEDY algo
 
         #
         # Tallies
-        if purged_key:
+        if purged_key is not None:
             t0 = time.time()
             for key in matches.keys():
                 row = matrix[key]
@@ -106,6 +106,7 @@ Begin GREEDY algo
                     # We lost a 1, so detract from the match
                     matches[key] -= 1
             print(f"{time.time() - t0} s")
+        print(f"{len(matches)} stops remaining")
 
         #
         # Purged keys

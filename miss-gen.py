@@ -6,7 +6,7 @@ from random import random
 import numpy as np
 
 # Create the matrix
-n = 3000
+n = 300
 missing_perc = 0.04
 
 matrix = np.ones((n, n), dtype=np.byte,)
@@ -16,7 +16,7 @@ for i in range(0, n):
     for j in range(0, n):
         if random() < missing_perc:
             matrix[i][j] = 0
-            matrix[j][i] = 0
+            # matrix[j][i] = 0
 
 # Write to CSV file
 np.savetxt(f'{n}x{n}.csv', matrix, fmt='%i', delimiter=',')

@@ -7,7 +7,7 @@ import csv
 nums = set()
 pairs = set()
 
-input_file = '3000,3000.csv'
+input_file = '300,300.csv'
 o_index = 0
 d_index = 1
 

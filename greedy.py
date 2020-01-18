@@ -2,6 +2,7 @@
 
 import sys
 import csv
+import time
 
 
 def main(args):
@@ -73,13 +74,16 @@ Begin GREEDY algo
         print(f"\n\n==> ITERATION #{loops}")
         matches = {i: 0 for i in matches.keys()}
 
+        t0 = time.time()
         # Tallies
         for i, j in pairs:
             if i in matches and j in matches:
                 matches[i] += 1
         print(f"{len(matches)} stops remaining")
+        print(f'{time.time() - t0} s')
 
         # Break if square
+        t0 = time.time()
         if all(x == len(matches) for x in matches.values()):
             print(
                 f"""
@@ -89,6 +93,7 @@ DONE: all have {len(matches)} matches!
     """
             )
             break
+        print(f'{time.time() - t0} s')
 
         # Greedy selection
         print("Prune weakest links")
@@ -105,7 +110,7 @@ DONE: all have {len(matches)} matches!
 
     # Stream output to new CSV
     print("\n==> Streaming new filtered CSV")
-    with open(args[0].replace(".csv", ".filtered.csv"), "w+") as csv_out:
+    with open(input_file.replace(".csv", ".filtered.csv"), "w+") as csv_out:
         writer = csv.writer(csv_out)
 
         # Read in

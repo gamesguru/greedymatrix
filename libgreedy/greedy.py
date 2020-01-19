@@ -4,6 +4,7 @@ import time
 
 import numpy as np
 
+MAX_PRINT_SIZE = 75
 
 def greedy_solve(matrix):
 
@@ -61,6 +62,9 @@ Begin GREEDY algo
         #
         # Break if square
         if all(x == len(matches) for x in matches.values()):
+            # Print matrix if small
+            if len(matches) <= MAX_PRINT_SIZE:
+                print_matrix(matrix, matches, purged_key)
             elapsed_micros = round((time.time() - t0) * 1000, 3)
             print(
                 f"""
@@ -75,7 +79,12 @@ found in: {elapsed_micros:,} ms
         #
         # Greedy selection
         purged_key = min(matches, key=matches.get)
-        print(f"  del {purged_key}  (x{matches[purged_key]})")
+        index = list(matches.keys()).index(purged_key)
+        print(f"  del {index}->{purged_key}  (x{matches[purged_key]})")
+        # Print matrix if small
+        if len(matches) <= MAX_PRINT_SIZE:
+            print_matrix(matrix, matches, purged_key)
+        # Delete key
         del matches[purged_key]
 
         # Continue
@@ -85,3 +94,35 @@ found in: {elapsed_micros:,} ms
     # Return solution
     solution = set(matches.keys())
     return solution
+
+
+def print_matrix(matrix, matches, purging_key):
+
+    # Get inputs ready
+    n = len(matches)
+
+    m2 = np.zeros((n, n), dtype=np.int)
+    np.fill_diagonal(m2, 1)
+
+    # Fill truncated matrix
+    for i, x in enumerate(matches):
+
+        row = matrix[x]
+
+        for j, y in enumerate(matches):
+            if x == y or i == j:
+                continue
+            # Add cell
+            m2[i][j] = row[y]
+
+    # Print
+    # np.savetxt(sys.stdout.buffer, m2, fmt="%i")
+    for i, x in enumerate(matches):
+        row = m2[i]
+        row = " ".join([str(e) for e in row])
+        if x == purging_key:
+            row += f"  <- del  {matches[x]}"
+        else:
+            row += f"          {matches[x]}"
+        print(row)
+    print()

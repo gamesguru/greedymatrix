@@ -15,7 +15,7 @@ def main(args):
         if len(args) > 1 and args[1] == "-m":
             matrix_csv = True
     else:
-        input_file = "resources/problems/CE.csv"
+        input_file = "resources/problems/CE-rel.csv"
 
     # Make matrix and solution
     if matrix_csv:

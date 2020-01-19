@@ -19,19 +19,15 @@ CREATE TABLE locs (
 -- Data
 -----------------
 CREATE TABLE data (
-  id INT NOT NULL,
-  name VARCHAR(40) NOT NULL,
   orig_id INT NOT NULL,
   dest_id INT NOT NULL,
-  dest_rank INT NOT NULL,
   travel_time float NOT NULL,
   total_miles float NOT NULL,
-  total_mins float NOT NULL,
   FOREIGN KEY (orig_id) REFERENCES locs (id),
   FOREIGN KEY (dest_id) REFERENCES locs (id)
 );
 
-\copy data FROM './data/ODCM_Brickell_Downtown_AVConstraints.csv' WITH csv HEADER;
+\copy data FROM './data/ODCM_Brickell_Downtown_AVConstraints.nocolumns.csv' WITH csv HEADER;
 
 
 -------------------

@@ -29,6 +29,13 @@ def main(args):
         j = p[1]
         matrix[i][j] = 1
 
+    # Make symmetric
+    for i in range(0, matrix.shape[0]):
+        row = matrix[i]
+        for j in range(0, matrix.shape[0]):
+            if not row[j]:
+                matrix[j][i] = 0
+
     # Save to disk
     np.savetxt(f"matrix.csv", matrix, fmt="%i", delimiter=",")
 

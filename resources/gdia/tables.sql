@@ -34,7 +34,8 @@ CREATE TABLE data (
 -- Solution
 -------------------
 CREATE TABLE solution (
-  id BIGSERIAL PRIMARY KEY
+  id BIGSERIAL PRIMARY KEY,
+  here_friendly BOOLEAN NOT NULL
 );
 
 \copy solution FROM './data/solution.csv' WITH csv HEADER;

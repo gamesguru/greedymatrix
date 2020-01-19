@@ -27,6 +27,8 @@ def main(args):
                 matrix[i][j] = 0
                 # TODO - comment out for real tests
                 matrix[j][i] = 0
+    # For convenience
+    np.fill_diagonal(matrix, 1)
 
     # Write to CSV file
     np.savetxt(

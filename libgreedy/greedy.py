@@ -5,7 +5,7 @@ import time
 import numpy as np
 
 
-def solve(matrix):
+def greedy_solve(matrix):
 
     #
     # Init dict

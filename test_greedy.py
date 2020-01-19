@@ -1,8 +1,8 @@
 import csv
 import time
 
-from .greedy import solve
-from .utils import matrix_from_rel_csv
+from .libgreedy.greedy import solve
+from .libgreedy.utils import matrix_from_rel_csv
 
 import pytest
 import numpy as np
@@ -14,57 +14,12 @@ def test_rel_csv(input_file=None):
         input_file = "resources/problems/CE.csv"
 
     matrix = matrix_from_rel_csv(input_file)
+
     solution = solve(matrix)
     print(solution)
-    assert solution == set(
-        {
-            0,
-            8,
-            11,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            29,
-            30,
-            31,
-            32,
-            33,
-            35,
-            36,
-            37,
-            38,
-            39,
-            41,
-            44,
-            45,
-            48,
-            49,
-        }
-    )
 
-    # Stream output to new CSV
+    assert solution == set({6, 11, 12})
 
-    # print("\n==> Streaming new filtered CSV")
-    # with open(input_file.replace(".csv", ".filtered.csv"), "w+") as csv_out:
-    #     writer = csv.writer(csv_out)
-
-    #     # Read in
-    #     with open(input_file) as csv_in:
-    #         reader = csv.reader(csv_in)
-
-    #         for row in reader:
-    #             i = int(row[o_index])
-    #             j = int(row[d_index])
-    #             # Add only members of the square solution
-    #             if i in solution and j in solution and i != j:
-    #                 writer.writerow(row)
 
 
 def test_matrix_csv(input_file=None):

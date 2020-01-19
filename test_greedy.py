@@ -7,13 +7,14 @@ import pytest
 import numpy as np
 
 
-def test_greedy():
+def test_main(input_file=None):
 
     # Get pairs and singles
     nums = set()
     pairs = set()
 
-    input_file = "resources/gdia/large.mapped.processed.csv"
+    if not input_file:
+        input_file = "resources/problems/CE.csv"
     o_index = 0
     d_index = 1
 

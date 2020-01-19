@@ -4,22 +4,37 @@
     "python.testing.nosetestsEnabled": false,
     "python.testing.unittestEnabled": false,
 
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-      {
-        "before": ["j", "k"],
-        "after": ["<Esc>"]
-      }
-    ],
-    "vim.leader": "<space>",
-    "vim.handleKeys": {
-      "<C-f>": false
-    },
     "python.testing.pytestArgs": [
       "-v",
       "-s"
-    ]
+    ],
+
+    "files.exclude": {
+      "**/__pycache__/**": true,
+      "**/.pytest_cache/**": true,
+      "**/__init__.py": true,
+      "**/db/**": true,
+      "**/.vscode/**": true,
+      ".gitmodules": true,
+      "Procfile": true,
+      ".pairs": true,
+      ".env": true,
+      ".cfignore": true,
+      ".gitignore": true,
+      "runtime.txt": true,
+      "requirements.txt": true,
+      "manifest.yml": true
+  },
+  "search.exclude": {
+      "**/__pycache__/**": true,
+      "**/.pytest_cache/**": true,
+      "**/__init__.py": true,
+      "**/db/**": true
+  },
+  "files.watcherExclude": {
+      "**/__pycache__/**": true,
+      "**/.pytest_cache/**": true,
+      "**/__init__.py": true,
+      "**/db/**": true
+  }
 }

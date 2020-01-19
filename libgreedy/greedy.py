@@ -9,7 +9,7 @@ def solve(matrix):
 
     #
     # Init dict
-    print("Init dict")
+    print("\nInit dict")
     t0 = time.time()
     matches = {i: 0 for i in range(0, matrix.shape[0])}
 
@@ -41,7 +41,7 @@ Begin GREEDY algo
 
     while True:
 
-        print(f"\n\n==> ITERATION #{loops}")
+        print(f"==> ITERATION #{loops} ({len(matches)} remaining)")
 
         #
         # Detract purged key from tallies
@@ -53,7 +53,6 @@ Begin GREEDY algo
                 if row[purged_key]:
                     # We lost a 1, so detract from the match
                     matches[key] -= 1
-        print(f"{len(matches)} stops remaining")
 
         #
         # Purged keys
@@ -75,9 +74,8 @@ found in: {elapsed_micros:,} ms
 
         #
         # Greedy selection
-        print("Prune weakest links")
         purged_key = min(matches, key=matches.get)
-        print(f"  del {purged_key}  ({matches[purged_key]} occurances)")
+        print(f"  del {purged_key}  {matches[purged_key]}")
         del matches[purged_key]
 
         # Continue

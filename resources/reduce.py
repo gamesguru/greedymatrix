@@ -26,7 +26,7 @@ print("Read in CSV, again, ugh..")
 with open(file.replace(".csv", ".mapped.csv"), "w+") as out_f:
     writer = csv.writer(out_f)
 
-    with open("large.csv") as in_f:
+    with open(file) as in_f:
 
         reader = csv.reader(in_f)
         for row in reader:

@@ -33,18 +33,18 @@ def main(args):
         f"resources/problems/_{n}x{n}-{missing_perc}.csv", matrix, fmt="%i", delimiter=","
     )
 
-    # Auxilary format
-    rows = []
-    for i in range(0, n):
-        for j in range(0, n):
-            # Don't add missing ones
-            if matrix[i][j]:
-                rows.append(f"{i},{j}")
+    # # Auxilary format
+    # rows = []
+    # for i in range(0, n):
+    #     for j in range(0, n):
+    #         # Don't add missing ones
+    #         if matrix[i][j]:
+    #             rows.append(f"{i},{j}")
 
-    # Write to CSV file
-    with open(f"resources/problems/{n}-{missing_perc}.csv", "w+") as f:
-        for row in rows:
-            f.writelines(row + "\n")
+    # # Write to CSV file
+    # with open(f"resources/problems/{n}-{missing_perc}.csv", "w+") as f:
+    #     for row in rows:
+    #         f.writelines(row + "\n")
 
 
 # Main script executable

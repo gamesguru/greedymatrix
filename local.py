@@ -2,18 +2,25 @@
 import sys
 
 from libgreedy.greedy import solve
-from libgreedy.utils import matrix_from_rel_csv
+from libgreedy.utils import matrix_from_rel_csv, matrix_from_matrix_csv
 
 
 def main(args):
 
+    # Parse incoming args
+    matrix_csv = False
     if args:
         input_file = args[0]
+        if len(args) > 1 and args[1] == "-m":
+            matrix_csv = True
     else:
         input_file = "resources/problems/CE.csv"
 
     # Make matrix and solution
-    matrix = matrix_from_rel_csv(input_file)
+    if matrix_csv:
+        matrix = matrix_from_matrix_csv(input_file)
+    else:
+        matrix = matrix_from_rel_csv(input_file)
     solution = solve(matrix)
 
     print(solution)

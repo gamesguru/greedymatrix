@@ -12,7 +12,7 @@ def main(args):
 
     # Stream thru CSV
     for line in open(input_file):
-        els = line.split(',')
+        els = line.split(",")
         i = int(els[0])
         j = int(els[1])
         nums.add(i)
@@ -41,5 +41,5 @@ def main(args):
 
 
 # Make script executable
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(sys.argv[1:])

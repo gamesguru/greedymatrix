@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
+import csv
 import sys
 
 file = sys.argv[1]
 indicies = sys.argv[2].split(",")
 
-import csv
 
 with open(file) as source:
     reader = csv.reader(source)
 
-    with open(file + "-processed", "w+") as result:
+    with open(file.replace(".csv", ".nonzeros.csv"), "w+") as result:
         writer = csv.writer(result)
 
         for row in reader:

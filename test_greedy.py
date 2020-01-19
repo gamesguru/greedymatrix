@@ -13,7 +13,7 @@ def test_greedy():
     nums = set()
     pairs = set()
 
-    input_file = "resources/problems/50-0.02.csv"
+    input_file = "resources/gdia/large.mapped.processed.csv"
     o_index = 0
     d_index = 1
 

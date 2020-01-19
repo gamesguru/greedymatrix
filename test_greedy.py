@@ -20,6 +20,18 @@ def test_matrix_csv():
     assert solution == {0, 96, 67, 37, 5, 73, 75, 44, 45, 14, 77, 84, 56, 89, 61, 94}
 
 
+def test_matrix_csv_3000():
+
+    input_file = "resources/problems/_3000x3000-0.03.csv"
+
+    matrix = matrix_from_matrix_csv(input_file)
+    solution = solve(matrix)
+
+    print(solution)
+
+    assert len(solution) == 92
+
+
 def test_rel_csv():
 
     input_file = "resources/problems/CE.csv"

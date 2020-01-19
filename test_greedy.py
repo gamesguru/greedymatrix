@@ -19,7 +19,7 @@ def test_matrix_csv_15():
     print(solution)
 
     # Bigger solution, just assert lengthes equal
-    assert solution == {2, 3, 5, 8, 11, 13, 14}
+    assert solution == {0, 3, 7, 9, 12, 13, 14}
 
 
 def test_matrix_csv_100():

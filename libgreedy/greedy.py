@@ -75,7 +75,7 @@ found in: {elapsed_micros:,} ms
         #
         # Greedy selection
         purged_key = min(matches, key=matches.get)
-        print(f"  del {purged_key}  {matches[purged_key]}")
+        print(f"  del {purged_key}  (x{matches[purged_key]})")
         del matches[purged_key]
 
         # Continue

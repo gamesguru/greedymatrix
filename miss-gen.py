@@ -30,7 +30,7 @@ def main(args):
 
     # Write to CSV file
     np.savetxt(
-        f"resources/problems/_{n}x{n}-{missing_perc}.csv",
+        f"resources/problems/{n}x{n}-{missing_perc}.csv",
         matrix,
         fmt="%i",
         delimiter=",",

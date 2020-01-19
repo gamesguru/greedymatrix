@@ -825,7 +825,7 @@ solution = {
     3202,
 }
 
-with open('locations.csv') as f:
+with open("locations.csv") as f:
     reader = csv.reader(f)
 
     i = 0
@@ -837,4 +837,4 @@ with open('locations.csv') as f:
         i += 1
         # Print locations only included in solution
         if int(row[0]) in solution:
-            print(','.join(row))
+            print(",".join(row))

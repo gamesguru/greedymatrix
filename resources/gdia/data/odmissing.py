@@ -6,7 +6,7 @@ import sys
 # dist = {}
 nums = set()
 pairs = set()
-with open('durations.csv') as f:
+with open("durations.csv") as f:
     reader = csv.reader(f)
 
     # Iterate, build the list of nums and the dict(): `orig: set(dests)`
@@ -32,4 +32,4 @@ for num1 in nums:
         if num1 == num2:
             continue
         if not (num1, num2) in pairs:
-            print(f'{num1},{num2}')
+            print(f"{num1},{num2}")

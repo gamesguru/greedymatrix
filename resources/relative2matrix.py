@@ -36,6 +36,9 @@ def main(args):
             if not row[j]:
                 matrix[j][i] = 0
 
+    # Set diag=1, Convention
+    np.fill_diagonal(matrix, 1)
+
     # Save to disk
     np.savetxt(f"matrix.csv", matrix, fmt="%i", delimiter=",")
 

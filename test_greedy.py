@@ -1,11 +1,13 @@
 import csv
 import time
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pytest
+import seaborn
 
-from .libgreedy.greedy import solve
 from .libgreedy.foresight import greedy_ahead
+from .libgreedy.greedy import solve
 from .libgreedy.utils import matrix_from_matrix_csv, matrix_from_rel_csv
 
 
@@ -84,3 +86,22 @@ def test_xstats_sparsity():
 
 def test_xstats_distribution_style():
     pass
+
+
+@pytest.mark.xpass
+def test_xstats_matrix_heatmap():
+
+    input_file = "resources/matrix.csv"
+
+    matrix = matrix_from_matrix_csv(input_file)
+
+    # Create heatmap
+    ax = seaborn.heatmap(matrix)
+    plt.title("Matrix HeatMap (ESRI - missing entries and zeros)")
+    plt.xlabel("Origin #")
+    plt.ylabel("Destination #")
+    plt.gca().invert_yaxis()
+
+    plt.show()
+
+    assert ax

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 
-from libgreedy.greedy import greedy_solve
+from libgreedy.greedy import solve
 from libgreedy.utils import matrix_from_rel_csv, matrix_from_matrix_csv
 
 
@@ -22,7 +22,7 @@ def main(args):
     else:
         matrix = matrix_from_rel_csv(input_file)
 
-    solution = greedy_solve(matrix)
+    solution = solve(matrix)
     # solution = greedy_kadane_solve(matrix)
 
     print(solution)

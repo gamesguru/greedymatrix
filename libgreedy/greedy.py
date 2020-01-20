@@ -7,7 +7,7 @@ import numpy as np
 MAX_PRINT_SIZE = 75
 
 
-def greedy_solve(matrix):
+def solve(matrix):
 
     #
     # Init dict
@@ -94,6 +94,7 @@ found in: {elapsed_micros:,} ms
     #
     # Return solution
     solution = set(matches.keys())
+    print(solution)
     return solution
 
 

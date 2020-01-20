@@ -2,7 +2,6 @@
 import sys
 
 from libgreedy.greedy import greedy_solve
-from libgreedy.kadane import greedy_kadane_solve
 from libgreedy.utils import matrix_from_rel_csv, matrix_from_matrix_csv
 
 

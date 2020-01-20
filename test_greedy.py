@@ -5,7 +5,6 @@ import numpy as np
 import pytest
 
 from .libgreedy.greedy import greedy_solve
-from .libgreedy.kadane import auxiliary, greedy_kadane_solve
 from .libgreedy.foresight import greedy_ahead
 from .libgreedy.utils import matrix_from_matrix_csv, matrix_from_rel_csv
 
@@ -70,15 +69,3 @@ def test_xgreedy_ahead():
     tree = greedy_ahead(matrix)
 
     assert tree
-
-
-def test_xkadanes_matrix():
-
-    input_file = "resources/problems/CE-matrix.csv"
-
-    matrix = matrix_from_matrix_csv(input_file)
-    solution = greedy_kadane_solve(matrix)
-
-    print(solution)
-
-    assert solution == {0, 1, 2, 3}

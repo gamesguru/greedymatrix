@@ -82,3 +82,15 @@ def test_xgreedy_ahead():
     tree = greedy_ahead(matrix)
 
     assert tree
+
+
+def test_xstats_size():
+    pass
+
+
+def test_xstats_sparsity():
+    pass
+
+
+def test_xstats_distribution_style():
+    pass

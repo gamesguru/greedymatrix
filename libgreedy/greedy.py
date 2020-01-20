@@ -6,6 +6,7 @@ import numpy as np
 
 MAX_PRINT_SIZE = 75
 
+
 def greedy_solve(matrix):
 
     #

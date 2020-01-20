@@ -37,6 +37,13 @@ def main(args):
         fmt="%i",
         delimiter=",",
     )
+    np.fill_diagonal(matrix, 0)
+    np.savetxt(
+        f"resources/problems/{n}x{n}-{missing_perc}.0.csv",
+        matrix,
+        fmt="%i",
+        delimiter=",",
+    )
 
     # # Auxilary format
     # rows = []

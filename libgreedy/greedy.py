@@ -6,6 +6,7 @@ import numpy as np
 
 MAX_PRINT_SIZE = 75
 
+
 def greedy_solve(matrix):
 
     #
@@ -42,7 +43,9 @@ Begin GREEDY algo
 
     while True:
 
-        print(f"==> ITERATION #{loops} ({len(matches)} remaining)")
+        print(
+            f"==> ITERATION #{str(loops).ljust(10)}  {len(matches)}/{matrix.shape[0]}"
+        )
 
         #
         # Detract purged key from tallies
@@ -80,7 +83,7 @@ found in: {elapsed_micros:,} ms
         # Greedy selection
         purged_key = min(matches, key=matches.get)
         index = list(matches.keys()).index(purged_key)
-        print(f"  del {index}->{purged_key}  (x{matches[purged_key]})")
+        print(f"  del {index}->{str(purged_key).ljust(12)}  x{matches[purged_key]}")
         # Print matrix if small
         if len(matches) <= MAX_PRINT_SIZE:
             print_matrix(matrix, matches, purged_key)

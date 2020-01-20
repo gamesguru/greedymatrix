@@ -97,11 +97,13 @@ def test_xstats_matrix_heatmap():
 
     # Create heatmap
     ax = seaborn.heatmap(matrix)
+
+    # Set axes labels and invert Y-axis
     plt.title("Matrix HeatMap (ESRI - missing entries and zeros)")
     plt.xlabel("Origin #")
     plt.ylabel("Destination #")
     plt.gca().invert_yaxis()
 
-    plt.show()
+    plt.savefig("resources/matrix_heatmap.png", dpi=350)
 
     assert ax

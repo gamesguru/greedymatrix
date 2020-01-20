@@ -1,6 +1,7 @@
 import sys
 import csv
 import time
+import random
 
 import numpy as np
 
@@ -78,7 +79,7 @@ found in: {elapsed_micros:,} ms
 
         #
         # Greedy selection
-        purged_key = min(matches, key=matches.get)
+        purged_key = random.choice(list(matches.keys()))
         index = list(matches.keys()).index(purged_key)
         print(f"  del {index}->{purged_key}  (x{matches[purged_key]})")
         # Print matrix if small

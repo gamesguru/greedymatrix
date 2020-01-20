@@ -45,19 +45,6 @@ def main(args):
         delimiter=",",
     )
 
-    # # Auxilary format
-    # rows = []
-    # for i in range(0, n):
-    #     for j in range(0, n):
-    #         # Don't add missing ones
-    #         if matrix[i][j]:
-    #             rows.append(f"{i},{j}")
-
-    # # Write to CSV file
-    # with open(f"resources/problems/{n}-{missing_perc}.csv", "w+") as f:
-    #     for row in rows:
-    #         f.writelines(row + "\n")
-
 
 # Main script executable
 if __name__ == "__main__":

@@ -53,16 +53,19 @@ def test_rel_csv():
     input_file = "resources/problems/CE-rel.csv"
 
     matrix = matrix_from_rel_csv(input_file)
+    matrix = np.rot90(matrix)
+    matrix = np.rot90(matrix)
     solution = greedy_solve(matrix)
 
     print(solution)
 
-    assert solution == {6, 11, 12}
+    # assert solution == {6, 11, 12}
+    assert solution == {9, 10, 11, 12}
 
 
 def test_xgreedy_ahead():
 
-    input_file = "resources/problems/100x100-0.02.csv"
+    input_file = "resources/problems/CE-matrix.csv"
 
     matrix = matrix_from_matrix_csv(input_file)
 

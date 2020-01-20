@@ -63,6 +63,16 @@ def test_rel_csv():
     assert solution == {9, 10, 11, 12}
 
 
+def test_tricky_matrix():
+    input_file = "resources/problems/CE-2-r270.csv"
+
+    matrix = matrix_from_matrix_csv(input_file)
+    solution = greedy_solve(matrix)
+
+    print(solution)
+    assert solution
+
+
 def test_xgreedy_ahead():
 
     input_file = "resources/problems/CE-matrix.csv"

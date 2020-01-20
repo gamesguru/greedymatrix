@@ -6,7 +6,7 @@ from random import random
 import numpy as np
 
 
-def main(args):
+def gen_matrix(n, ):
     """ Generates relative i,j CSV format with missing entirs, like ESRI/Arc """
 
     # Get input args

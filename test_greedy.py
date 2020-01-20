@@ -88,7 +88,7 @@ def test_xstats_distribution_style():
     pass
 
 
-@pytest.mark.xpass
+@pytest.mark.xfail
 def test_xstats_matrix_heatmap():
 
     input_file = "resources/matrix.csv"
